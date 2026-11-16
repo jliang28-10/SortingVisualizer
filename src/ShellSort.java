@@ -33,6 +33,10 @@ public class ShellSort implements SortAlgorithm {
 
     @Override
     public void sort(SortArray arr) {
+        int h=4;
+        for(int i=0; i<arr.size(); i++){
+
+        }
         // TODO: write shell sort here
 
     }
