@@ -40,7 +40,12 @@ public class InsertionSort implements SortAlgorithm {
             for(int j=i-1; j>=0; j--){
                 if(arr.less(i,j))
                     swap++;
+                if(arr.less(j,i))
+                    break;
 
+            }
+            for(int k=i; k>=i-swap+1; k--){
+                arr.swap(k,k-1);
             }
         }
     }
