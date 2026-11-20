@@ -42,7 +42,7 @@ public class MergeSort implements SortAlgorithm {
     @Override
     public void sort(SortArray arr) {
         Item[] temp = new Item[arr.size()];
-        mergeSort(arr, temp, 0, arr.size());
+        mergeSort(arr, temp, 0, arr.size()-1);
         // TODO: write merge sort here (add helper methods below)
 
     }
@@ -52,44 +52,35 @@ public class MergeSort implements SortAlgorithm {
         mergeSort(arr, temp, lo, mid);
         mergeSort(arr, temp, mid+1, hi);
         merge(arr, temp, lo, mid, hi);
-    }/*
+    }
     private void merge(SortArray arr, Item[] temp, int lo, int mid, int hi){
-        int i = lo;
-        int j = mid + 1;
-        int k = lo;
+        for(int k=lo; k<=hi; k++){
+            temp[k]=arr.get(k);
+        }
+        int i=lo;
+        int j=mid+1;
+        for(int k=lo; k<=hi; k++){
 
-        while (i <= mid && j <= hi)
-        {
-            if (elements[i] < elements[j])
-            {
-                temp[k] = elements[i];
-                i++;
-            }
-            else
-            {
-                temp[k] = elements[j];
+            if(i>mid){
+                arr.set(k, temp[j]);
                 j++;
             }
-            k++;
+            else if(j>hi){
+                arr.set(k, temp[i]);
+                i++;
+            }
+            else if(arr.less(temp[i],temp[j])){
+                arr.set(k, temp[i]);
+                i++;
+            }
+            else if(arr.less(temp[j],temp[i])){
+                arr.set(k, temp[j]);
+                j++;
+            }
+            else if(!arr.less(temp[j],temp[i])&&!arr.less(temp[i],temp[j])){
+                arr.set(k, temp[i]);
+                i++;
+            }
         }
-
-        while (i <= mid)
-        {
-            temp[k] = elements[i];
-            i++;
-            k++;
-        }
-
-        while (j <= to)
-        {
-            temp[k] = elements[j];
-            j++;
-            k++;
-        }
-
-        for (k = from; k <= to; k++)
-        {
-            elements[k] = temp[k];
-        }
-    }*/
+    }
 }
